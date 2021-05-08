@@ -1,0 +1,12 @@
+[Unit]
+Description=cgminer
+After=network.target ntp.service
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/screen -dmS cgminer /home/$USER/cgminer-4.9.2/cgminer --sharelog /home/$USER/cgminer.log -c /home/$USER/.cgminer/cgminer.conf
+ExecStop=/usr/bin/screen -S cgminer -X quit
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
